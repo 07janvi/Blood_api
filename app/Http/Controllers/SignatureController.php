@@ -115,8 +115,6 @@ class Signaturecontroller extends Controller
         }
     }
 
- 
-
     public function list()
     {
         $signature = Signature::all();
