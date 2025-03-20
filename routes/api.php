@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgronomyController;
 use App\Http\Controllers\CapacityController;
 use App\Http\Controllers\Signaturecontroller;
-use App\Http\Controllers\CameraController;
+use App\Http\Controllers\SendController;
+use Twilio\Rest\Client;
+
 
 
 
@@ -57,6 +59,8 @@ Route::get('/signature', [Signaturecontroller::class, 'list'])->name('list');
 Route::delete('/signature/{id}', [Signaturecontroller::class, 'signature_delete'])->name('signature_delete');
 
 
-//this camera captcher code
-Route::get('/camerashow', [CameraController::class, 'camerashow'])->name("camerashow");
-Route::post('/store_data', [CameraController::class, 'store_data'])->name("store_data");
+//this send otp code
+Route::get('/sendview', [SendController::class, 'sendview'])->name("sendview");
+Route::post('/send-otp', [SendController::class, 'sendOtp'])->name('sendOtp');
+Route::post('/verify-otp', [SendController::class, 'verifyOtp'])->name('verifyOtp');
+Route::post('/storesendotp', [SendController::class, 'storesendotp'])->name('storesendotp');

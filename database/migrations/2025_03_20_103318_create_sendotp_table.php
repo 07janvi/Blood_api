@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('signature', function (Blueprint $table) {
+        Schema::create('sendotp', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->string('person_name');
             $table->string('surname');
             $table->date('dob');
-            $table->string('contectno');
+            $table->string('contactno');
+            $table->string('otp');
             $table->string('state');
             $table->string('district');
             $table->text('address');
-            $table->longText('signature');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('signature');
+        Schema::dropIfExists('sendotp');
     }
 };
