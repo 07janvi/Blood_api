@@ -7,44 +7,44 @@
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
-    body {
-        background-color: #f8f9fa;
-    }
+        body {
+            background-color: #f8f9fa;
+        }
 
-    .card {
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .card-header {
-        background-color: #007bff;
-        color: white;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 15px 15px 0 0;
-    }
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 15px 15px 0 0;
+        }
 
-    .form-control,
-    .form-select {
-        border-radius: 10px;
-    }
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+        }
 
-    .btn {
-        border-radius: 10px;
-        padding: 10px 20px;
-    }
+        .btn {
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
 
-    #signature-pad {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        width: 100%;
-        height: 200px;
-    }
+        #signature-pad {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            height: 200px;
+        }
 
-    #sendOtpBtn:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-    }
+        #sendOtpBtn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -129,68 +129,68 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-    const sendOtpButton = document.getElementById('sendOtpBtn');
-    const contactInput = document.getElementById('contactno');
-    const otpInput = document.getElementById('otp');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const sendOtpButton = document.getElementById('sendOtpBtn');
+        const contactInput = document.getElementById('contactno');
+        const otpInput = document.getElementById('otp');
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    sendOtpButton.addEventListener('click', () => {
-        const number = contactInput.value;
-        if (number.length === 10) {
-            fetch('/api/send-otp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({
-                        number
+        sendOtpButton.addEventListener('click', () => {
+            const number = contactInput.value;
+            if (number.length === 10) {
+                fetch('/api/send-otp', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            number
+                        })
                     })
-                })
-                .then(res => res.json())
-                .then(data => alert(data.message))
-                .catch(() => alert('Failed to send OTP'));
-        } else alert('Please enter a valid 10-digit number.');
-    });
-
-    otpInput.addEventListener('input', () => {
-        if (otpInput.value.length === 4) {
-            fetch('/api/verify-otp', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    body: JSON.stringify({
-                        otp: otpInput.value
-                    })
-                })
-                .then(res => res.json())
-                .then(data => submitButton.disabled = !data.success);
-        }
-    });
-
-    $(document).ready(function() {
-        $("#otpForm").on("submit", function(e) {
-            e.preventDefault();
-
-            let formData = new FormData(this);
-
-            fetch("http://127.0.0.1:8000/api/storesendotp", {
-                    method: "POST",
-                    body: formData,
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.message);
-                    $("#otpForm")[0].reset();
-                })
-                .catch(error => {
-                    alert("Error saving data!");
-                    console.error(error);
-                });
+                    .then(res => res.json())
+                    .then(data => alert(data.message))
+                    .catch(() => alert('Failed to send OTP'));
+            } else alert('Please enter a valid 10-digit number.');
         });
-    });
+
+        otpInput.addEventListener('input', () => {
+            if (otpInput.value.length === 4) {
+                fetch('/api/verify-otp', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken
+                        },
+                        body: JSON.stringify({
+                            otp: otpInput.value
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => submitButton.disabled = !data.success);
+            }
+        });
+
+        $(document).ready(function() {
+            $("#otpForm").on("submit", function(e) {
+                e.preventDefault();
+
+                let formData = new FormData(this);
+
+                fetch("http://127.0.0.1:8000/api/storesendotp", {
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        $("#otpForm")[0].reset();
+                    })
+                    .catch(error => {
+                        alert("Error saving data!");
+                        console.error(error);
+                    });
+            });
+        });
     </script>
 
 </body>
