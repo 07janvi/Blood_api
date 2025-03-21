@@ -6,6 +6,7 @@ use App\Http\Controllers\AgronomyController;
 use App\Http\Controllers\CapacityController;
 use App\Http\Controllers\Signaturecontroller;
 use App\Http\Controllers\SendController;
+use App\Http\Controllers\CustomerController;
 use Twilio\Rest\Client;
 
 
@@ -64,3 +65,16 @@ Route::get('/sendview', [SendController::class, 'sendview'])->name("sendview");
 Route::post('/send-otp', [SendController::class, 'sendOtp'])->name('sendOtp');
 Route::post('/verify-otp', [SendController::class, 'verifyOtp'])->name('verifyOtp');
 Route::post('/storesendotp', [SendController::class, 'storesendotp'])->name('storesendotp');
+
+//this is mail send to mail box
+Route::get('/viewcustomer', [CustomerController::class, 'viewcustomer'])->name("viewcustomer");
+Route::post('/store_customer', [CustomerController::class, 'store_customer'])->name('store_customer');
+
+
+//update
+Route::get('/edit_customer/{id}', [CustomerController::class, 'edit_customer'])->name('edit_customer');
+Route::put('/update_customer/{id}', [CustomerController::class, 'update_customer'])->name('update_customer');
+
+//list and delete
+Route::get('/customer', [CustomerController::class, 'customer_list'])->name('customer_list');
+Route::delete('/customer/{id}', [CustomerController::class, 'customer_delete'])->name('customer_delete');
