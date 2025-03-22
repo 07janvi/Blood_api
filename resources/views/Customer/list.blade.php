@@ -6,40 +6,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
+    body {
+        background-color: #f8f9fa;
+    }
 
-        .card {
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .card-header {
-            background-color: #007bff;
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 15px 15px 0 0;
-        }
+    .card-header {
+        background-color: #007bff;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 15px 15px 0 0;
+    }
 
-        .form-control,
-        .form-select {
-            border-radius: 10px;
-        }
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+    }
 
-        .btn {
-            border-radius: 10px;
-            padding: 10px 15px;
-        }
+    .btn {
+        border-radius: 10px;
+        padding: 10px 15px;
+    }
 
-        table img {
-            border-radius: 10px;
-        }
+    table img {
+        border-radius: 10px;
+    }
 
-        .table-responsive {
-            margin-top: 20px;
-        }
+    .table-responsive {
+        margin-top: 20px;
+    }
     </style>
 </head>
 

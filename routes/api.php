@@ -7,6 +7,7 @@ use App\Http\Controllers\CapacityController;
 use App\Http\Controllers\Signaturecontroller;
 use App\Http\Controllers\SendController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CaptchaController;
 use Twilio\Rest\Client;
 
 
@@ -78,3 +79,9 @@ Route::put('/update_customer/{id}', [CustomerController::class, 'update_customer
 //list and delete
 Route::get('/customer', [CustomerController::class, 'customer_list'])->name('customer_list');
 Route::delete('/customer/{id}', [CustomerController::class, 'customer_delete'])->name('customer_delete');
+
+
+//captcha form get insert data
+Route::get('/index', [CaptchaController::class, 'index']);
+Route::get('/reload-captcha', [CaptchaController::class, 'reloadCaptcha']);
+Route::post('/storecaptcha', [CaptchaController::class, 'storecaptcha'])->name('storecaptcha');
